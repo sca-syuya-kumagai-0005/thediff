@@ -14,6 +14,7 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(GameSet);
         if(GameSet)
         {
             SceneManager.LoadScene("GameOver");
