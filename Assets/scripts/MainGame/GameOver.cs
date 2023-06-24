@@ -10,7 +10,7 @@ public class GameOver : MonoBehaviour
         
     }
 
-    public static bool GameSet ;
+    public static bool GameSet=false ;
     // Update is called once per frame
     void Update()
     {

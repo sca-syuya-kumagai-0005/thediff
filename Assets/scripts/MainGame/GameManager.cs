@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         ProblemRand();
         GetAllChildObject();
         poseflag=false;
+        GameOver.GameSet=false;
     }
 
     void Update()
