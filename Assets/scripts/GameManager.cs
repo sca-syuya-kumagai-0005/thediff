@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private static int problemrand;
     private static bool changeFlag=false;
     public static bool OKflag=false;
-    private bool Trueflag=false;  
+    public static bool Trueflag=false;  
 
     public int NotFakeCount=0;
     public int BonusCount=0;
@@ -48,7 +48,6 @@ public class GameManager : MonoBehaviour
         ProblemRand();
         GetAllChildObject();
         poseflag=false;
-        GameOver.GameSet=false;
     }
 
     void Update()
@@ -114,6 +113,7 @@ public class GameManager : MonoBehaviour
                 BonusCount+=BonusJudge;
 
                 GetAllChildObject();
+
             }
             else if(Checkflag&&!OKflag)//間違いボタンを押してない時にチェックボタンを押した
             {
@@ -134,6 +134,7 @@ public class GameManager : MonoBehaviour
                 else//偽物だった
                 {
                     GameOver.GameSet=true;
+                    Debug.Log("即死");
                 }
                 CheckFalse(changeFlag);
             }

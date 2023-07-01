@@ -40,6 +40,9 @@ public class ScoreCounter : MonoBehaviour
 
         if ((int)GameManager.Totalscore > TotalScore)
         {
+            if(TotalScore >= 99999999) {
+                TotalScore=99999999;
+            }
             TotalScore+=1;
             Score[0]+=1;
 

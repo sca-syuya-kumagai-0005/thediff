@@ -50,7 +50,7 @@ public class TimeBarController : MonoBehaviour
         {
             time=0;
             TimeUpFlag=true;
-            GameOver.GameSet=true;
+            GameOver.GameSet=false;
         }
     }
    

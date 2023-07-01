@@ -1,27 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class FalseJudge : MonoBehaviour
+using UnityEngine.SceneManagement;
+public class GameOver : MonoBehaviour
 {
-    
-    public void OnClick()
-    {
-        if(!GameManager.poseflag)
-        TimeBarController.time-=5;
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    public static bool GameSet ;
     // Update is called once per frame
     void Update()
     {
-        
+        if(GameSet)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
-
-
 }
