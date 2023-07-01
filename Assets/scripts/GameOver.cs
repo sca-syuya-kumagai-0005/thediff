@@ -16,7 +16,7 @@ public class GameOver : MonoBehaviour
     {
         if(GameSet)
         {
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("Result");
         }
     }
 }
