@@ -13,6 +13,8 @@ public class Pose : MonoBehaviour
     Image feedalpha;
     [SerializeField]
     private float alpha=0;
+    [SerializeField]
+    private GameObject IllustFeedPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +33,14 @@ public class Pose : MonoBehaviour
     {
         if(pose)
         {
+            IllustFeedPanel.SetActive(true);
             alpha=0.8f;
             feedalpha.color=new Color(0.0f,0.0f,0.0f,alpha);
             alpha=1.0f;
         }
         if(!pose)
         {
+            IllustFeedPanel.SetActive(false);
             alpha=0;
             feedalpha.color=new Color(0.0f,0.0f,0.0f,alpha);
             alpha=0.0f;
