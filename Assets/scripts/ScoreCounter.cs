@@ -23,7 +23,7 @@ public class ScoreCounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        TotalScore=0;
         for(int i = 0; i < 8; i++)
         {
             if(i==0)Score[0]=0;
@@ -61,7 +61,5 @@ public class ScoreCounter : MonoBehaviour
             }
         }
         //Score=TotalScore.ToString().ToCharArray();
-
-
     }
 }
