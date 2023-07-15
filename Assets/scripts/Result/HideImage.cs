@@ -71,7 +71,6 @@ public class HideImage : MonoBehaviour
         _QuestionCount=0;
         _RealCount=0;
         _5secondsCount=0;
-<<<<<<< HEAD
         QuestionScore=0;
         OverQuestion=0;
         UnderQuestion=0;
@@ -81,8 +80,6 @@ public class HideImage : MonoBehaviour
         BonusScore = 0;
         OverBonus = 0;
         UnderBonus = 0;
-=======
->>>>>>> 8600e2480d4f14fef5cf8c202d6ac252ac6ba8b1
     }
 
     // Update is called once per frame

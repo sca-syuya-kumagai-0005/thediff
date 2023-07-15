@@ -15,10 +15,7 @@ public class start3sec : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-<<<<<<< HEAD
         GameManager.startflag=false;
-=======
->>>>>>> 8600e2480d4f14fef5cf8c202d6ac252ac6ba8b1
         StartCoroutine(startwait());
         waittmptime=waittime;
     }
