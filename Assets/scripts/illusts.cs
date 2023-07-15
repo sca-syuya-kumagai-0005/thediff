@@ -1,22 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-public class GameOver : MonoBehaviour
+
+public class illusts : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        GameSet=false;
+        
     }
 
-    public static bool GameSet ;
     // Update is called once per frame
     void Update()
     {
-        if(GameSet)
-        {
-            SceneManager.LoadScene("Result");
-        }
+        
     }
 }

@@ -61,7 +61,5 @@ public class ScoreCounter : MonoBehaviour
             }
         }
         //Score=TotalScore.ToString().ToCharArray();
-
-
     }
 }

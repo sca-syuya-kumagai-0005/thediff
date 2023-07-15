@@ -14,25 +14,26 @@ public class GameManager : MonoBehaviour
     public static bool OKflag=false;
     public static bool Trueflag=false;  
 
-    public int NotFakeCount=0;
-    public int BonusCount=0;
+    public static int NotFakeCount=0;
+    public static int BonusCount=0;
     public int BonusJudge;
-    public int QuestionCount=0;
+    public static int QuestionCount=0;
 
     public static int Plusscore = 0;
     [SerializeField]
     private int tmppluss;
-    public static float Totalscore=0;
+    public static int Totalscore=0;
     public int ClearCount = 0;
     public static int QuestionValue=0;
     public static  bool Checkflag;
     public static bool poseflag=false;
+    public static bool startflag{get;set;}
     private int Qmax=0;
     private int tmprand;
     private int AddTime=0;
     public float timeController = 0.0f;
 
-    [SerializeField] private int EasyQuestionAddScore = 1;
+    [SerializeField] private int EasyQuestionAddScore = 3000;
     [SerializeField] private int HardQuestionAddScore = 8;
     [SerializeField] private int BonusScore=15;
     [SerializeField] private float Bonus=5;
@@ -52,103 +53,105 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (timeController <= Bonus&&Trueflag)
-        {
-            Plusscore = HardQuestionAddScore + BonusScore;
-        }
-        else if(Trueflag)
-        {
-            Plusscore = HardQuestionAddScore;
-        }
-        if (timeController <= Bonus&&!Trueflag)
-        {
-            Plusscore = EasyQuestionAddScore + BonusScore;
-        }
-        else if(!Trueflag)
-        {
-            Plusscore = EasyQuestionAddScore;
-        }
-        if (timeController<=5)
-        {
-            BonusScore = 15;
-            BonusJudge=1;
-        }
-        else
-        {
-            BonusScore=0;
-            BonusJudge=0;
-        }
-        if(poseflag)
-        {
-            pose.SetActive(true);
-        }
-        else
-        {
-            pose.SetActive(false);
-        }
-        tmppluss=Plusscore;
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            FlagSwhitch(poseflag);
-            poseflag = FlagSwhitch(poseflag);
-        }
-
-        if(!poseflag&& !TimeBarController.TimeUpFlag)
+        if(startflag)
         { 
-            timeController+=Time.deltaTime;
-              Checkflag=CheckButton.Check();
-            //見つけたfakeの数と抽選されたfakeの数が同じだと行われる処理
-
-            if (OKflag)//間違いボタンを押した
+            if (timeController <= Bonus&&Trueflag)
             {
-                ClearCount += 1;
-                Totalscore += Plusscore;
-                TimeBarController.time += AddTime;
-                changeFlag = true;
-                FakeActivetrue();
-                FakeActivefalse();
-                ProblemRand();
-                Trueflag =false;
-                QuestionCount+=1;
-                BonusCount+=BonusJudge;
-
-                GetAllChildObject();
-
+                Plusscore = HardQuestionAddScore + BonusScore;
             }
-            else if(Checkflag&&!OKflag)//間違いボタンを押してない時にチェックボタンを押した
+            else if(Trueflag)
             {
-                if (Trueflag)//本物だった
+                Plusscore = HardQuestionAddScore;
+            }
+            if (timeController <= Bonus&&!Trueflag)
+            {
+                Plusscore = EasyQuestionAddScore + BonusScore;
+            }
+            else if(!Trueflag)
+            {
+                Plusscore = EasyQuestionAddScore;
+            }
+            if (timeController<=5)
+            {
+                BonusScore = 15;
+                BonusJudge=1;
+            }
+            else
+            {
+                BonusScore=0;
+                BonusJudge=0;
+            }
+            if(poseflag)
+            {
+                pose.SetActive(true);
+            }
+            else
+            {
+                pose.SetActive(false);
+            }
+            tmppluss=Plusscore;
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                FlagSwhitch(poseflag);
+                poseflag = FlagSwhitch(poseflag);
+            }
+
+            if(!poseflag&& !TimeBarController.TimeUpFlag)
+            { 
+                timeController+=Time.deltaTime;
+                  Checkflag=CheckButton.Check();
+
+                if (OKflag)//間違いボタンを押した
                 {
                     ClearCount += 1;
                     Totalscore += Plusscore;
                     TimeBarController.time += AddTime;
                     changeFlag = true;
-                    NotFakeCount+=1;
-                    BonusCount += BonusJudge;
                     FakeActivetrue();
                     FakeActivefalse();
                     ProblemRand();
-                    Trueflag=false;
+                    Trueflag =false;
+                    QuestionCount+=1;
+                    BonusCount+=BonusJudge;
+
                     GetAllChildObject();
+
                 }
-                else//偽物だった
+                else if(Checkflag&&!OKflag)//間違いボタンを押してない時にチェックボタンを押した
                 {
-                    GameOver.GameSet=true;
-                    Debug.Log("即死");
+                    if (Trueflag)//本物だった
+                    {
+                        ClearCount += 1;
+                        Totalscore += Plusscore;
+                        TimeBarController.time += AddTime;
+                        changeFlag = true;
+                        NotFakeCount+=1;
+                        BonusCount += BonusJudge;
+                        FakeActivetrue();
+                        FakeActivefalse();
+                        ProblemRand();
+                        Trueflag=false;
+                        GetAllChildObject();
+                    }
+                    else//偽物だった
+                    {
+                        GameOver.GameSet=true;
+                        Debug.Log("即死");
+                    }
+                    CheckFalse(changeFlag);
                 }
-                CheckFalse(changeFlag);
+                OKflag = fakebutton.OKJudge();
+
+
+
+                    ////見つけたfakeの数をカウントするプログラム
+                    //else
+                    //{ 
+                    //    OKcountprovisional = fakebutton.OKCount();
+                    //    OKcount=OKcountprovisional;
+                    //    changeFlag=false;
+                    //}
             }
-            OKflag = fakebutton.OKJudge();
-
-
-
-                ////見つけたfakeの数をカウントするプログラム
-                //else
-                //{ 
-                //    OKcountprovisional = fakebutton.OKCount();
-                //    OKcount=OKcountprovisional;
-                //    changeFlag=false;
-                //}
         }
     }
 

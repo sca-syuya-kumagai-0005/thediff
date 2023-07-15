@@ -29,28 +29,32 @@ public class TimeBarController : MonoBehaviour
     void Update()
     {
        
-        if (!GameManager.poseflag)
-            time -= Time.deltaTime;
-        if (time > Maxtime)
-        {
-            time = Maxtime;
-        }
-        RedBar.fillAmount = time / Maxtime;
-        if (Maxtime / 4 >= time)
-        {
-            GreenBar.fillAmount=0;
-            Smile.fillAmount=0;
-        }
-        else
-        {
-            GreenBar.fillAmount = time / Maxtime;
-            Smile.fillAmount=1;
-        }
-        if(time<=0)
-        {
-            time=0;
-            TimeUpFlag=true;
-            GameOver.GameSet=true;
+        if(GameManager.startflag)
+        { 
+            if (!GameManager.poseflag)
+                time -= Time.deltaTime;
+            if (time > Maxtime)
+            {
+                time = Maxtime;
+            }
+            RedBar.fillAmount = time / Maxtime;
+            if (Maxtime / 4 >= time)
+            {
+                GreenBar.fillAmount=0;
+                Smile.fillAmount=0;
+            }
+            else
+            {
+                GreenBar.fillAmount = time / Maxtime;
+                Smile.fillAmount=1;
+            }
+            if(time<=0)
+            {
+                time=0;
+                TimeUpFlag=true;
+                GameOver.GameSet=true;
+                time = Maxtime;
+            }
         }
     }
    
