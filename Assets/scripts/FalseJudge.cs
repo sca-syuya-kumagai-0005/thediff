@@ -7,10 +7,13 @@ public class FalseJudge : MonoBehaviour
     
     public void OnClick()
     {
-        if(!GameManager.poseflag)
-        TimeBarController.time-=5;
-        if(GameManager.Trueflag) {
-            Debug.Log("‘¦Ž€");
+        if(GameManager.startflag)
+            { 
+            if(!GameManager.poseflag)
+            TimeBarController.time-=5;
+            if(GameManager.Trueflag) {
+                Debug.Log("‘¦Ž€");
+            }
         }
     }
 

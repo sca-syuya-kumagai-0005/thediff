@@ -18,7 +18,10 @@ public class TimeCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time-=Time.deltaTime;
-        t=(int)time;
+        if(GameManager.startflag)
+        { 
+            time-=Time.deltaTime;
+            t=(int)time;
+        }
     }
 }
