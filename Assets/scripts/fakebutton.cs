@@ -28,7 +28,7 @@ public class fakebutton : MonoBehaviour
     public void OnClick()
     {
         poseflag = GameManager.PoseFlag();
-        if (!poseflag&&!TimeBarController.TimeUpFlag)
+        if (!poseflag&&!TimeBarController.TimeUpFlag&&GameManager.startflag)
         {
             if(!OKflag)
             { 
