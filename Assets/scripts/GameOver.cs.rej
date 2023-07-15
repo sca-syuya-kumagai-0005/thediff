@@ -1,0 +1,10 @@
+diff a/Assets/scripts/GameOver.cs b/Assets/scripts/GameOver.cs	(rejected hunks)
+@@ -7,7 +7,7 @@
+     // Start is called before the first frame update
+     void Start()
+     {
+-        
++        GameSet=false;
+     }
+ 
+     public static bool GameSet ;
